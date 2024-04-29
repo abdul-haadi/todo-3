@@ -1,0 +1,24 @@
+.App{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  button{
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    background-color: #3ad63a;
+    color: white;
+    margin: 10px;
+    border-radius: 10px;
+    width: 150px;
+  }
+  
+  button:hover{
+    background-color: #3ad63a;
+    color: black;
+    border: 1px solid black;
+  
+  }

@@ -1,4 +1,5 @@
 import React from 'react'
+import './Todopage.css'
 import useTodoState from './Todostate'
 import Todo from '../../components/tiles/Todo/Todo'
 
@@ -7,7 +8,8 @@ const Todopage = () => {
   return (
     <div className='Application'>
         <div>
-            <input type='text' value={state.todo} onChange={state.handleTodo}></input>
+            <label>Enter Todo</label>
+            <input type='text' value={state.todo} onChange={state.handleTodo} placeholder='For e.g. React Task'></input>
             <button onClick={state.handleAddTodo}>Add</button>
         </div>
         {state.todos.length > 0 && <div className='todo-list'>
