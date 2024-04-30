@@ -1,16 +1,29 @@
 import React, { useState, useEffect } from "react";
+import { createClient } from '@supabase/supabase-js'
 
 const useTodoState = () => {
   const [todos, setTodos] = useState([]);
   const [todo, setTodo] = useState("");
-
+  const supabase = createClient(
+    "https://ueitqibzfnopxcfhoise.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVlaXRxaWJ6Zm5vcHhjZmhvaXNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTM1NzU4OTYsImV4cCI6MjAyOTE1MTg5Nn0.FYtXNaSrDJCKdO_brk55J1Q2Vw3SJIpEYk7kNDMf-uc"
+  );
   useEffect(() => {
     fetchTodos();
   }, []);
 
+
   const fetchTodos = async () => {
     try{
-    const response= await fetch('http://localhost:3001/');
+      
+  const { data: {session}} = await supabase.auth.getSession()
+
+    const response= await fetch('http://localhost:3001/',{
+      headers:{
+        'Authorization': "" + session.access_token
+      }
+    });
+
     const data = await response.json()
     setTodos(data)
     }
@@ -18,19 +31,22 @@ const useTodoState = () => {
       console.log(error)
     }
   };
+  
 
   function handleTodo(e) {
     setTodo(e.target.value);
   }
 
   async function handleAddTodo() {
+      const { data: {session}} = await supabase.auth.getSession()
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-
+      myHeaders.append('Authorization',"" + session.access_token);
+      
       const raw = JSON.stringify({
         task: todo,
       });
-
+      
       const requestOptions = {
         method: "POST",
         headers: myHeaders,
@@ -44,9 +60,11 @@ const useTodoState = () => {
       setTodo("");
   }
 
-async function handleDeleteTodo(id) {
+  async function handleDeleteTodo(id) {
+    const { data: {session}} = await supabase.auth.getSession()
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+    myHeaders.append('Authorization',"" + session.access_token);
 
     const raw =JSON.stringify({
       id: id,

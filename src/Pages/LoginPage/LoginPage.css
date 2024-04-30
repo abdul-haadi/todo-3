@@ -1,24 +1,24 @@
-.App{
+.login-box{
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
   }
   
   button{
     padding: 10px;
     font-size: 16px;
     border: none;
-    background-color: #3ad63a;
-    color: white;
+    background-color: white;
+    color: black;
     margin: 10px;
     border-radius: 10px;
     width: 150px;
+    border: 1px solid black;
   }
   
   button:hover{
-    background-color: #3ad63a;
-    color: black;
-    border: 1px solid black;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
   
   }

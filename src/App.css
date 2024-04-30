@@ -1,16 +1,19 @@
-.App {
+.navbar-menu {
   text-align: center;
   display: flex;
+  justify-content: flex-end;
 }
 
 .nav-btn{
   background-color: #ffffff;
   color: black;
   border: 1px solid black;
+  cursor: pointer;
 }
 
 .nav-btn:hover{
-  background-color: #ffee51;
+  background-color: black;
+  color: white;
 
 }
 
